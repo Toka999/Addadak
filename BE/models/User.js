@@ -1,20 +1,19 @@
 const mongoose=require("mongoose");
-const userSchema=mongoose.Schema({
+const bcrypt=require("bcrypt");
+
+const userSchema= new mongoose.Schema({
     firstName:{
         type:String,
-        required:[true,"First name is required"],
         match:[/^[a-zA-Z]/,"First name should have alphabetical characters only" ],
     },
 
     lastName:{
         type:String, 
-        required:[true,"Last name is required"],
         match:[/^[a-zA-Z]/,"Last name should have alphabetical characters only" ],
     },
 
     age:{
         type:Number,
-        required:[true,"Age is required"],
         match:/^[0-9]/,
         min:[21,"minimum age is 21"],
         max:[90,"maximum age is 90"],
@@ -37,9 +36,11 @@ const userSchema=mongoose.Schema({
         trim:true
     },
 
+    
+
+
     phone:{
         type:String,
-        required:[true,"Phone number is required." ],
         match:[/^(?:\+20|20)?0?1[0125]\d{8}$/,"Please enter a valid egyptian phone number."],
         unqiue:true,
         minLength:[11,"only 11 digits allowed for agyptian phone numbers."],
@@ -48,12 +49,39 @@ const userSchema=mongoose.Schema({
 
     nationalID:{
         type:String,
-        required:[true, "Egyptian National ID is required."],
         match:[/^([23])(?:\d{2})(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])(?:\d{6})$/,"Please enter a valid Egyptian National ID."],
         unique:[true,"This National ID already exists."],
         trim:true
-    }
+    },
 
-   /*appliances*/ 
+    charged:{
+        type:Number,
+        trim:true
+    },
 
+    currentBalance:{
+        type:Number,
+        trim:true
+    },
+
+   //to be edited
+
+},{timestamps:true});
+
+
+userSchema.pre("save",async function(next){
+    if(this.isModified("password"))return next()
+     this.password=await bcrypt.hash(this.password,11);
+     next();
 });
+
+userSchema.methods.checkPassword=async function (pass){
+    let check=await bcrypt.compare(pass,this.password);
+    return check;
+}
+
+
+
+const User=mongoose.model("User",userSchema);
+
+module.exports=User;
