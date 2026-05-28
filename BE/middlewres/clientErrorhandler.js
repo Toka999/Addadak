@@ -1,4 +1,4 @@
-class clientErrorHnadler extends error{
+class clientErrorHnadler extends Error{
     constructor(statusCode,message){
         super(message);
         this.statusCode=statusCode;

@@ -49,7 +49,7 @@ const userSchema= new mongoose.Schema({
 
     nationalID:{
         type:String,
-        match:[/^([23])(?:\d{2})(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])(?:\d{6})$/,"Please enter a valid Egyptian National ID."],
+        match:[/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&'%])[A-Za-z\d@$!%*?&'%]{8,}$/,"Please enter a valid Egyptian National ID."],
         unique:[true,"This National ID already exists."],
         trim:true
     },

@@ -7,13 +7,19 @@ require("dotenv").config();
 
 //dependencies
 const mongoose=require("mongoose");
+const mongoSanitize=require("express-mongo-sanitize");
+const xssClean=require("xss-clean");
 //const morgan=require("morgan");
 const cors=require("cors");
 const globalErrorHnadler=require("./middlewres/serverErrorHandler.js");
+const userRouter=require("./routes/userRoute.js");
 
 //server activation
-app.use(cors());
 app.use(express.json());
+//app.use(mongoSanitize());
+//app.use(xssClean());
+app.use(cors());
+app.use("/",userRouter);
 
 
 //db connection
