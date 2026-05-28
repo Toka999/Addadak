@@ -1,5 +1,5 @@
 const Joi=require("joi");
-const {clientErrorhandler}=require("../middlewres/clientErrorhandler");
+const clientErrorHandler=require("../middlewres/clientErrorhandler");
 
 //Registration
 const registerValidation=Joi.object({
@@ -107,7 +107,7 @@ const validateRegister=(req,res,next)=>{
             stripUnknown:true
         }
     );
-    if(error){return next(new clientErrorhandler(400,error.details[0].message));}//to be continued
+    if(error){return next(new clientErrorHandler(400,error.details[0].message));}//to be continued
     req.body=value;
     next();
 };
@@ -134,7 +134,7 @@ const validateLogging=(req,res,next)=>{
             stripUnknown:true
         }
     );
-    if(error){return next(new clientErrorhandler(400,error.details[0].message));}//to be continued
+    if(error){return next(new clientErrorHandler(400,error.details[0].message));}//to be continued
     req.body=value;
     next();
 };

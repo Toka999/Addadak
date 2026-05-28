@@ -1,4 +1,4 @@
-class clientErrorHnadler extends Error{
+class clientErrorHandler extends Error{
     constructor(statusCode,message){
         super(message);
         this.statusCode=statusCode;
@@ -8,4 +8,4 @@ class clientErrorHnadler extends Error{
     }
 }
 
-module.exports=clientErrorHnadler;
+module.exports=clientErrorHandler;

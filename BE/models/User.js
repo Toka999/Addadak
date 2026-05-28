@@ -32,7 +32,7 @@ const userSchema= new mongoose.Schema({
     password:{
         type:String,
         required:[true,"Password is required."],
-        match:[/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,"Please enter a valid password where it should have at least one capital letter, one small letter, one number, one symbol and no spaces."], 
+        match:[/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&'%])[A-Za-z\d@$!%*?&'%]{8,}$/,"Please enter a valid password where it should have at least one capital letter, one small letter, one number, one symbol and no spaces."], 
         trim:true
     },
 
@@ -42,14 +42,14 @@ const userSchema= new mongoose.Schema({
     phone:{
         type:String,
         match:[/^(?:\+20|20)?0?1[0125]\d{8}$/,"Please enter a valid egyptian phone number."],
-        unqiue:true,
+        unqiue:[true,"this phone number already exists"],
         minLength:[11,"only 11 digits allowed for agyptian phone numbers."],
         trim:true
     },
 
     nationalID:{
         type:String,
-        match:[/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&'%])[A-Za-z\d@$!%*?&'%]{8,}$/,"Please enter a valid Egyptian National ID."],
+        match:[/^([23])(?:\d{2})(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])(?:\d{6})$/,"Please enter a valid Egyptian National ID."],
         unique:[true,"This National ID already exists."],
         trim:true
     },
@@ -69,10 +69,10 @@ const userSchema= new mongoose.Schema({
 },{timestamps:true});
 
 
-userSchema.pre("save",async function(next){
-    if(this.isModified("password"))return next()
+userSchema.pre("save",async function(){
+    if(!this.isModified("password"))return 
      this.password=await bcrypt.hash(this.password,11);
-     next();
+     
 });
 
 userSchema.methods.checkPassword=async function (pass){
