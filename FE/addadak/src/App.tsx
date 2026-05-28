@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       
-<RootHome></RootHome>
+      <RootHome></RootHome>
      
     </>
   )

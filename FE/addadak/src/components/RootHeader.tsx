@@ -2,7 +2,11 @@ import SpeedoMeter from "../assets/SpeedoMeter.gif"
 
 const RootHeader=()=>{
     return(
-        <header className="flex border-b border-secondary-purple shadow-lg flex-row justify-between px-30 align-center py-4">
+        <header className="flex flex-row
+         justify-between align-center
+         border-b border-secondary-purple
+         shadow-lg px-30  py-4
+         sticky top-0 z-50 backdrop-blur-sm bg-white/40">
             <div className="logo flex flex-row items-center gap-4 ">
                 <img src={SpeedoMeter} alt="" className="mb-3" width={65}/>
                 <h2 className="font-bold text-shadow-lg text-2xl text-secondary-purple"><span className="text-3xl">ع</span>addadak</h2>
@@ -10,7 +14,7 @@ const RootHeader=()=>{
             </div>
             <div className="buttons flex flex-row gap-20 ">
                 <button className="shadow-md
-                bg-my-white
+                 bg-my-white
                  border border-secondary-purple
                  w-20 h-10 m-auto 
                  rounded-lg 
