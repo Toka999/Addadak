@@ -1,4 +1,4 @@
-import SpeedoMeter from "../assets/SpeedoMeter.gif"
+import Logo from "./Logo";
 
 const RootHeader=()=>{
     return(
@@ -7,11 +7,7 @@ const RootHeader=()=>{
          border-b border-secondary-purple
          shadow-lg px-30  py-4
          sticky top-0 z-50 backdrop-blur-sm bg-white/40">
-            <div className="logo flex flex-row items-center gap-4 ">
-                <img src={SpeedoMeter} alt="" className="mb-3" width={65}/>
-                <h2 className="font-bold text-shadow-lg text-2xl text-secondary-purple"><span className="text-3xl">ع</span>addadak</h2>
-                
-            </div>
+            <Logo></Logo>
             <div className="buttons flex flex-row gap-20 ">
                 <button className="shadow-md
                  bg-my-white
@@ -21,7 +17,8 @@ const RootHeader=()=>{
                  text-secondary-purple font-bold
                  hover:bg-secondary-purple
                  hover:text-my-white
-                 hover:cursor-pointer">Login</button>
+                 hover:cursor-pointer
+                 duration-300">Login</button>
                 <button className="shadow-md
                  w-20 h-10
                  m-auto px-2 
@@ -32,7 +29,8 @@ const RootHeader=()=>{
                  hover:border
                  hover:border-secondary-purple
                  hover:text-secondary-purple 
-                 hover:cursor-pointer">Sign Up</button>
+                 hover:cursor-pointer
+                 duration-300">Sign Up</button>
             </div>
 
 
