@@ -1,4 +1,5 @@
-import Logo from "./Logo";
+import Logo from "../Logo";
+import { NavLink } from "react-router-dom";
 
 const RootHeader=()=>{
     return(
@@ -18,7 +19,10 @@ const RootHeader=()=>{
                  hover:bg-secondary-purple
                  hover:text-my-white
                  hover:cursor-pointer
-                 duration-300">Login</button>
+                 duration-300">
+                    <NavLink to="/user/login">Login</NavLink>
+                </button>
+
                 <button className="shadow-md
                  w-20 h-10
                  m-auto px-2 
@@ -30,7 +34,10 @@ const RootHeader=()=>{
                  hover:border-secondary-purple
                  hover:text-secondary-purple 
                  hover:cursor-pointer
-                 duration-300">Sign Up</button>
+                 duration-300">
+                    <NavLink to="/user/register">Sign Up</NavLink>
+                    
+                </button>
             </div>
 
 
